@@ -25,8 +25,9 @@ function showWelcome(savedUsername){
     mainImage.classList.add(HIDE_CLASSNAME);
     welcomeUser.innerText = `반가워요, ${savedUsername}님!`;
     welcomeText.innerText = `오늘의 메할일은 무엇이 있을까요?`;
-    const todoForm = document.querySelector("#todo_form")
-    todoForm.classList.remove(HIDE_CLASSNAME);
+    const todo = document.querySelector("#todo")
+    todo.classList.remove(HIDE_CLASSNAME);
+
 
 }
 

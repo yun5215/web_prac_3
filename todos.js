@@ -1,50 +1,72 @@
 const todoForm = document.querySelector("#todo_form");
-const todoList = document.querySelector("#todo_list");
 const todoInput = document.querySelector("#todo_form input");
 const oneDayBtn = document.querySelector("#oneday_btn");
 const sevenDayBtn = document.querySelector("#sevenday_btn");
-const ONEDAYTODO_KEY = "onedaytodos";
+const ONEDAYTODO_KEY = "onedayTodos";
 const TODO_KEY = "todos";
 const savedTodos = localStorage.getItem(ONEDAYTODO_KEY);
 let todos = [];
+const oneDayList = document.querySelector("#oneday_list");
+const sevenDayList = document.querySelector("#sevenday_list");
 
 todoForm.addEventListener("submit", todoSubmit);
 
-function todoSubmit(event){
-    event.preventDefault();
-    const newTodo = onedaytodoInput.value;
-    onedaytodoInput.value = "";
-    const newTodoObj = {
-        text : newTodo,
-        id : Date.now(),
-    }
-    onedaytodos.push(newTodoObj);
-    showTodos(newTodoObj);
-    saveTodos();
+window.onload = function(){
+    oneDayBtn.classList.add("active");
+    todoInput.focus();
 }
 
-function showTodos(newTodo){
+
+function todoSubmit(event){
+    event.preventDefault();
+    const newTodoObj = {
+        text : todoInput.value,
+        id : Date.now(),
+    }
+    if(oneDayBtn.classList.contains("active")){
+        onedayTodos.push(newTodoObj);
+        showTodos(newTodoObj, 1);
+        
+    }else if(sevenDayBtn.classList.contains("active")){
+        sevendayTodos.push(newTodoObj);
+        showTodos(newTodoObj, 7);
+    }
+    saveTodos();
+    todoInput.value = "";
+    // const newTodo = onedaytodoInput.value;
+    // console.log(newTodo);
+    // onedaytodoInput.value = "";
+    // const newTodoObj = {
+    //     text : newTodo,
+    //     id : Date.now(),
+    // }
+    // onedayTodos.push(newTodoObj);
+    // showTodos(newTodoObj);
+    // saveTodos();
+}
+
+function showTodos(newTodo, i){
     const li = document.createElement("li");
     const span = document.createElement("span");
     const button = document.createElement("button");
     li.id = newTodo.id;
     span.innerText = newTodo.text;
     button.innerText = "x";
-    button.addEventListener("click", deleteTodos);
-    todoList.appendChild(li);
+    button.addEventListener("click", deleteTodos); 
+    if(i == 1){
+    oneDayList.appendChild(li);
+    }else{
+        sevenDayList.appendChild(li);
+    }
     li.appendChild(span);
     li.appendChild(button);
 }
 
-
-let onedaytodos = []; 
+let sevendayTodos = [];
+let onedayTodos = []; 
 
 function saveTodos(){
-    if(oneDayBtn.classList.contains("active")){
-        localStorage.setItem(ONEDAYTODO_KEY, JSON.stringify(onedaytodos));
-    }else{
-        alert("no");
-    }
+        localStorage.setItem(ONEDAYTODO_KEY, JSON.stringify(onedayTodos));
 }
 
 
@@ -52,13 +74,14 @@ function saveTodos(){
 function deleteTodos(event){
     const li = event.target.parentElement;
     li.remove();
-    ondaytodos = onedaytodos.filter(onedaytodos => onedaytodos.id !== parseInt(li.id));
+    onedayTodos = onedayTodos.filter(onedayTodos => onedayTodos.id !== parseInt(li.id));
+    sevendayTodos = sevendayTodos.filter(sevendayTodos => sevendayTodos.id !== parseInt(li.id));
     saveTodos();
 }
 
 if(savedTodos !== null){
     const parsedTodos = JSON.parse(savedTodos);
-    onedaytodos = parsedTodos;
+    onedayTodos = parsedTodos;
     parsedTodos.forEach(showTodos);
 }
 
