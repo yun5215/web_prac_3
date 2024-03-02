@@ -61,16 +61,12 @@ main{
     left: 50%;
     transform: translate(-50%,-50%);
 }
-#login_form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: -200px;
-}
 
-#login_form img{
+
+#mainimage img{
     width: 200px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    margin-top: -200px;
 }
 
 #login_form input{
@@ -90,4 +86,73 @@ main{
 #login_form input:focus{
     border-bottom: 1px solid black;
     outline: none;
+}
+
+
+
+#welcome{
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: -350px;
+}
+
+#welcome h1:first-child{
+    margin-bottom: 10px;
+}
+
+#todo_form{
+    margin-top: -200px;
+    position: relative;
+}
+
+#todo_form input{
+    border: none;
+    border-bottom: 1px solid black;
+    padding: 15px 10px;
+    width: 500px;
+}
+
+#todo_form input::placeholder{
+    text-align: center;
+    font-size: 20px;
+
+}
+
+#oneday_btn{
+    outline: none;
+    background: none;
+    border: 1px solid black;
+    border-radius: 7px;
+    padding: 5px 5px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+#sevenday_btn{
+    outline: none;
+    background: none;
+    border: 1px solid black;
+    border-radius: 7px;
+    padding: 5px 5px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+#oneday_btn:focus{
+    color: white;
+    background-color: #707070;
+}
+
+#sevenday_btn:focus{
+    color: white;
+    background-color: #707070;
+}
+
+.focus{
+    background-color: #707070;
+    color: red;
+}
+.hide{
+    display: none;
 }
