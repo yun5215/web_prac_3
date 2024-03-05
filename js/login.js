@@ -39,6 +39,8 @@ if (savedUsername === null){
     loginForm.addEventListener("submit", loginSubmit);
 } else{
     showWelcome(savedUsername);
+    const logoutBtn = document.querySelector("#logout");
+    logoutBtn.classList.remove(HIDE_CLASSNAME);
 }
 
 
