@@ -19,6 +19,8 @@ function loginSubmit(event){
     event.preventDefault();
     const username = loginInput.value;
     localStorage.setItem(USERNAME_KEY, username);
+    const logoutBtn = document.querySelector("#logout");
+    logoutBtn.classList.remove(HIDE_CLASSNAME);
     showWelcome(username);
 }
 
