@@ -1,0 +1,52 @@
+#todo_form{
+    margin-top: -200px;
+    position: relative;
+}
+
+#todo_form input{
+    border: none;
+    border-bottom: 1px solid black;
+    padding: 15px 10px;
+    width: 500px;
+}
+
+#todo_form input::placeholder{
+    text-align: center;
+    font-size: 20px;
+
+}
+
+#oneday_btn{
+    outline: none;
+    background: none;
+    border: 1px solid black;
+    border-radius: 7px;
+    padding: 5px 5px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+#sevenday_btn{
+    outline: none;
+    background: none;
+    border: 1px solid black;
+    border-radius: 7px;
+    padding: 5px 5px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+#oneday_btn:focus{
+    color: white;
+    background-color: #707070;
+}
+
+#sevenday_btn:focus{
+    color: white;
+    background-color: #707070;
+}
+
+.focus{
+    background-color: #707070;
+    color: red;
+}
