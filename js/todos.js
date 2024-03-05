@@ -3,19 +3,36 @@ const todoInput = document.querySelector("#todo_form input");
 const oneDayBtn = document.querySelector("#oneday_btn");
 const sevenDayBtn = document.querySelector("#sevenday_btn");
 const ONEDAYTODO_KEY = "onedayTodos";
-const TODO_KEY = "todos";
+const SEVENDAYTODO_KEY = "sevendayTodos";
 const savedTodos = localStorage.getItem(ONEDAYTODO_KEY);
-let todos = [];
 const oneDayList = document.querySelector("#oneday_list");
 const sevenDayList = document.querySelector("#sevenday_list");
+let sevendayTodos = [];
+let onedayTodos = []; 
 
 todoForm.addEventListener("submit", todoSubmit);
 
 window.onload = function(){
+    init();
     oneDayBtn.classList.add("active");
     todoInput.focus();
 }
 
+function loadOnedayTodos() {
+    const savedOnedayTodos = localStorage.getItem(ONEDAYTODO_KEY);
+    if (savedOnedayTodos !== null) {
+        onedayTodos = JSON.parse(savedOnedayTodos);
+        onedayTodos.forEach(todo => showTodos(todo, 1));
+    }
+}
+
+function loadSevendayTodos() {
+    const savedSevendayTodos = localStorage.getItem(SEVENDAYTODO_KEY);
+    if (savedSevendayTodos !== null) {
+        sevendayTodos = JSON.parse(savedSevendayTodos);
+        sevendayTodos.forEach(todo => showTodos(todo, 7));
+    }
+}
 
 function todoSubmit(event){
     event.preventDefault();
@@ -25,48 +42,56 @@ function todoSubmit(event){
     }
     if(oneDayBtn.classList.contains("active")){
         onedayTodos.push(newTodoObj);
+        saveOnedayTodos();
         showTodos(newTodoObj, 1);
         
     }else if(sevenDayBtn.classList.contains("active")){
         sevendayTodos.push(newTodoObj);
+        saveSevendayTodos();
         showTodos(newTodoObj, 7);
     }
-    saveTodos();
     todoInput.value = "";
-    // const newTodo = onedaytodoInput.value;
-    // console.log(newTodo);
-    // onedaytodoInput.value = "";
-    // const newTodoObj = {
-    //     text : newTodo,
-    //     id : Date.now(),
-    // }
-    // onedayTodos.push(newTodoObj);
-    // showTodos(newTodoObj);
-    // saveTodos();
 }
+
 
 function showTodos(newTodo, i){
     const li = document.createElement("li");
     const span = document.createElement("span");
     const button = document.createElement("button");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
     li.id = newTodo.id;
     span.innerText = newTodo.text;
     button.innerText = "x";
     button.addEventListener("click", deleteTodos); 
     if(i == 1){
+    const onedayUl = document.querySelector("#oneday_list ul");
     oneDayList.appendChild(li);
+    onedayUl.appendChild(li);
     }else{
+        const sevendayUl = document.querySelector("#sevenday_list ul");
         sevenDayList.appendChild(li);
+        sevendayUl.appendChild(li);
     }
+    li.appendChild(checkbox);
     li.appendChild(span);
     li.appendChild(button);
 }
 
-let sevendayTodos = [];
-let onedayTodos = []; 
 
-function saveTodos(){
-        localStorage.setItem(ONEDAYTODO_KEY, JSON.stringify(onedayTodos));
+
+
+
+
+
+
+
+function saveOnedayTodos() {
+    localStorage.setItem(ONEDAYTODO_KEY, JSON.stringify(onedayTodos));
+}
+
+function saveSevendayTodos() {
+    localStorage.setItem(SEVENDAYTODO_KEY, JSON.stringify(sevendayTodos));
 }
 
 
@@ -74,15 +99,16 @@ function saveTodos(){
 function deleteTodos(event){
     const li = event.target.parentElement;
     li.remove();
-    onedayTodos = onedayTodos.filter(onedayTodos => onedayTodos.id !== parseInt(li.id));
-    sevendayTodos = sevendayTodos.filter(sevendayTodos => sevendayTodos.id !== parseInt(li.id));
-    saveTodos();
+    const todoId = parseInt(li.id);
+    onedayTodos = onedayTodos.filter(todo => todo.id !== todoId);
+    saveOnedayTodos();
+    sevendayTodos = sevendayTodos.filter(todo => todo.id !== todoId);
+    saveSevendayTodos();
 }
 
-if(savedTodos !== null){
-    const parsedTodos = JSON.parse(savedTodos);
-    onedayTodos = parsedTodos;
-    parsedTodos.forEach(showTodos);
+function init() {
+    loadOnedayTodos();
+    loadSevendayTodos();
 }
 
 oneDayBtn.addEventListener("click", function() {

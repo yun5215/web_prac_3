@@ -3,30 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>메할일</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <Main>
+    <login id="login" class="hide">
         <div id="mainimage">
-            <img class src="maple.png">
+            <img src="/maple.png">
         </div>
         <div>
-            <form id="login_form" class="hide">
+            <form id="login_form">
                 <input
                     type="text"
                     placeholder="이름이 무엇인가요?"
                     required
                     maxlength="15" />
-                
             </form>
+        </div>
+
+    </login>
+    
+    <main id="main" class="hide">
+        <div id="todo">
             <div id="welcome" >
                 <h1></h1>
                 <h1></h1>
             </div>
-        </div>
-
-        <div id="todo" class="hide">
             <form id="todo_form">
                 <input
                     type="text"
@@ -46,23 +51,22 @@
             </form>
             
             
+            <div id="todo_list">
+                <div id="oneday_list">
+                    <h2>일일</h2>
+                    <ul>
+                    
+                    </ul>
+                </div>
 
-            <div id="oneday_list">일일
-                <ul>
-                </ul>
+                <div id="sevenday_list">
+                    <H2>주간</H2>
+                    <ul>
+                    </ul>
+                </div>
             </div>
-
-            <div id="sevenday_list">주간
-                <ul>
-                </ul>
-            
         </div>
-        
-
-
-
-
-    </Main>
+    </main>
     <script src="js/login.js"></script>
     <script src="js/todos.js"></script>
 </body>

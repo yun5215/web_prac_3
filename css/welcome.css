@@ -1,4 +1,4 @@
-main{
+#login{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,13 +6,13 @@ main{
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    margin-top: -100px;
 }
 
 
 #mainimage img{
     width: 200px;
     margin-bottom: 40px;
-    margin-top: -200px;
 }
 
 #login_form input{
@@ -40,7 +40,9 @@ main{
     font-size: 30px;
     font-weight: 600;
     text-align: center;
-    margin-top: -350px;
+    box-sizing: border-box;
+    padding: 10px 10px;
+    margin-top: 20px;
 }
 
 #welcome h1:first-child{

@@ -1,52 +1,135 @@
+#todo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100wh;
+}
+
 #todo_form{
-    margin-top: -200px;
     position: relative;
+    margin-top: 50px;
+    background-color: none;
 }
 
 #todo_form input{
     border: none;
-    border-bottom: 1px solid black;
+    border-radius: 10px;
+    border: 2px solid #b1b1b1;
     padding: 15px 10px;
     width: 500px;
+    font-size: 20PX;
 }
 
 #todo_form input::placeholder{
     text-align: center;
     font-size: 20px;
-
+    font-weight: 400;
 }
 
-#oneday_btn{
+#todo_form input:focus{
+    outline: none;
+    border: 2px solid #4B4B4B;
+    border-radius: 10px;
+}
+
+#oneday_btn, #sevenday_btn{
     outline: none;
     background: none;
-    border: 1px solid black;
-    border-radius: 7px;
-    padding: 5px 5px;
+    border: 2px solid #4B4B4B;
+    border-radius: 15px;
+    padding: 5px 10px;
     font-size: 15px;
     font-weight: 600;
+    margin-top: 8px;
 }
 
-#sevenday_btn{
+#oneday_btn:hover,
+#sevenday_btn:hover {
     outline: none;
+    border: 2px solid #4B4B4B;
+    background-color: #4B4B4B;
+    color: white; 
+}
+
+#oneday_btn.focus,
+#sevenday_btn.focus {
+    outline: none;
+    border: 2px solid #4B4B4B;
+    background-color: #4B4B4B;
+    color: white; 
+}
+
+
+#todo_list{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#todo_list li{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+#todo_list li input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+}
+
+#todo_list li input[type="checkbox"]:checked{
+    background-color: black;
+}
+
+#todo_list li input[type="checkbox"]:checked + span{
+    text-decoration: line-through;
+}
+
+#todo_list li span{
+    padding: 0 12px
+}
+
+#todo_list li button{
+    outline: none;
+    border: none;
     background: none;
-    border: 1px solid black;
-    border-radius: 7px;
-    padding: 5px 5px;
     font-size: 15px;
+}
+
+#todo_list li button:hover{
+    background-color: #4B4B4B;
+    color: white;
+}
+
+#oneday_list h2, #sevenday_list h2{
+    font-size: 20PX;
+    margin-bottom: 30px;
     font-weight: 600;
-}
-
-#oneday_btn:focus{
+    text-align: center;
     color: white;
-    background-color: #707070;
+    background:  #4B4B4B;
+    border: 2px solid #4B4B4B;
+    border-radius: 20px;
+    padding: 8px 14px;
+    display: inline-block;
 }
 
-#sevenday_btn:focus{
-    color: white;
-    background-color: #707070;
+#oneday_list, #sevenday_list{
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.focus{
-    background-color: #707070;
-    color: red;
+main{
+    background-image: url(/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
