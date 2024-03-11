@@ -80,12 +80,6 @@ function showTodos(newTodo, i){
 
 
 
-
-
-
-
-
-
 function saveOnedayTodos() {
     localStorage.setItem(ONEDAYTODO_KEY, JSON.stringify(onedayTodos));
 }
